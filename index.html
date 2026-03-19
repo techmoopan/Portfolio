@@ -120,18 +120,36 @@
             letter-spacing: 0.5px;
         }
 
-        /* Works Button Specific Styles */
+        /* --- INTERACTIVE TRIGGER BOXES --- */
+        .trigger-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
         .works-box {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 3rem 2rem;
+            flex: 1;
+            min-width: 250px;
             max-width: 400px;
-            margin: 3rem auto;
             border: 1px solid rgba(0, 210, 255, 0.4);
             box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .works-box svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+            color: #00d2ff;
+            stroke-width: 1.5;
         }
         .works-box h3 {
             margin: 0 0 10px 0;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #00d2ff;
         }
 
@@ -214,9 +232,32 @@
         <h2 class="section-title">About My Style</h2>
         <p>Specializing in cinematic trailer cuts, custom typography-heavy edits, and high-retention social media content. I blend precision pacing with emotional storytelling to make every second count.</p>
 
-        <div class="card works-box" onclick="togglePortfolio()">
-            <h3>Works</h3>
-            <p>Click here to view my video edits</p>
+        <div class="trigger-container">
+            <div class="card works-box" onclick="togglePortfolio()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <line x1="2" y1="7" x2="7" y2="7"></line>
+                    <line x1="2" y1="17" x2="7" y2="17"></line>
+                    <line x1="17" y1="17" x2="22" y2="17"></line>
+                    <line x1="17" y1="7" x2="22" y2="7"></line>
+                </svg>
+                <h3>Works</h3>
+                <p>View my video edits</p>
+            </div>
+
+            <div class="card works-box" onclick="togglePosters()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                    <path d="M2 2l7.58 7.58"></path>
+                    <circle cx="11" cy="11" r="2"></circle>
+                </svg>
+                <h3>Poster Works & Logos</h3>
+                <p>View my designs</p>
+            </div>
         </div>
 
         <div id="portfolio-section" style="display: none;">
@@ -252,22 +293,24 @@
             </div>
         </div>
 
-        <h2 class="section-title">Posters & Typography</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="image-placeholder">POETIC CHINTHAKAL</div>
-                <h4>Poster Design</h4>
-                <p>Photoshop</p>
-            </div>
-            <div class="card">
-                <div class="image-placeholder">MICMAGICMOMENT</div>
-                <h4>Logo Creation</h4>
-                <p>Illustrator</p>
-            </div>
-            <div class="card">
-                <div class="image-placeholder">4 YEARS</div>
-                <h4>Malayalam Typography</h4>
-                <p>Custom Lettering</p>
+        <div id="posters-section" style="display: none;">
+            <h2 class="section-title">Posters & Typography</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="image-placeholder">POETIC CHINTHAKAL</div>
+                    <h4>Poster Design</h4>
+                    <p>Photoshop</p>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">MICMAGICMOMENT</div>
+                    <h4>Logo Creation</h4>
+                    <p>Illustrator</p>
+                </div>
+                <div class="card">
+                    <div class="image-placeholder">4 YEARS</div>
+                    <h4>Malayalam Typography</h4>
+                    <p>Custom Lettering</p>
+                </div>
             </div>
         </div>
 
@@ -310,6 +353,7 @@
     </footer>
 
     <script>
+        // Toggle Videos
         function togglePortfolio() {
             var portfolio = document.getElementById("portfolio-section");
             if (portfolio.style.display === "none") {
@@ -317,6 +361,17 @@
                 portfolio.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
                 portfolio.style.display = "none";
+            }
+        }
+
+        // Toggle Posters
+        function togglePosters() {
+            var posters = document.getElementById("posters-section");
+            if (posters.style.display === "none") {
+                posters.style.display = "block";
+                posters.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                posters.style.display = "none";
             }
         }
 
