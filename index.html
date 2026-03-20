@@ -47,7 +47,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative; 
-            text-transform: uppercase; /* ALL CAPS */
+            text-transform: uppercase; 
         }
         
         @keyframes gradientBG {
@@ -143,7 +143,7 @@
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            padding: clamp(1rem, 4vw, 3rem); 
+            padding: clamp(1.5rem, 4vw, 3rem); 
         }
         .section-title { 
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
@@ -168,7 +168,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             border-left: 1px solid rgba(255, 255, 255, 0.15);
-            padding: clamp(1rem, 2vw, 2rem); 
+            padding: clamp(1.5rem, 2vw, 2rem); 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -178,12 +178,12 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: clamp(1rem, 3vw, 2.5rem);
+            gap: clamp(1.5rem, 3vw, 2.5rem);
             margin: clamp(2rem, 5vw, 4rem) 0;
         }
         .works-box {
             text-align: center;
-            padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
+            padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 3vw, 2rem);
             flex: 1 1 300px;
             max-width: 500px;
             cursor: pointer;
@@ -250,7 +250,7 @@
         .image-wrapper {
             position: relative;
             width: 100%;
-            height: clamp(180px, 25vw, 300px);
+            height: clamp(200px, 25vw, 300px);
             border-radius: 12px;
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.4);
@@ -326,7 +326,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- LIGHTBOX MODALS (Photos & Insta) --- */
+        /* --- LIGHTBOX MODALS --- */
         .modal {
             display: none;
             position: fixed;
@@ -360,7 +360,6 @@
             transform: scale(1);
         }
 
-        /* --- LOGO MODAL --- */
         .modal-content.is-logo {
             border: none;
             box-shadow: none;
@@ -495,6 +494,58 @@
             font-size: clamp(0.75rem, 1.5vw, 1rem);
             color: #64748b;
         }
+
+        /* =========================================
+           📱 MOBILE PRECISION OVERRIDES
+           Perfectly tunes padding, spacing, and sizing 
+           strictly for phones and small tablets.
+           ========================================= */
+        @media (max-width: 768px) {
+            header {
+                padding: clamp(5rem, 12vw, 6rem) 1.5rem 2rem;
+            }
+            header h1 {
+                letter-spacing: 2px; /* Prevents awkward wrapping on tiny screens */
+            }
+            header p {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+            .trigger-container { 
+                flex-direction: column; 
+                gap: 1.2rem; /* Tighter gap for trigger boxes */
+                margin: 2rem 0;
+            }
+            .works-box { 
+                width: 100%; 
+                max-width: 100%; 
+                box-sizing: border-box; 
+                padding: 1.8rem 1rem; /* Sleeker box on mobile */
+            }
+            .section-title {
+                margin-top: 2.5rem;
+                margin-bottom: 1.2rem;
+            }
+            .grid {
+                gap: 1.2rem; /* Bring videos/photos closer together */
+            }
+            .card, .video-card {
+                padding: 1rem; /* Less bulky borders on mobile */
+                border-radius: 16px;
+            }
+            .social-links {
+                justify-content: center; /* Center the icons nicely */
+                gap: 12px;
+            }
+            .icon-btn {
+                width: 48px; /* Perfect thumb-tap size */
+                height: 48px;
+            }
+            .insta-box {
+                min-width: 85vw; /* Fills screen beautifully without touching edges */
+                padding: 2rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -509,7 +560,7 @@
     <div class="container">
         <div class="fade-up delay-2">
             <h2 class="section-title gradient-subheading">About My Style</h2>
-            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, high-retention social media content, and visual photography. I blend precision pacing with emotional storytelling to make every second count.</p>
+            <p style="font-size: clamp(0.85rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, high-retention social media content, and visual photography. I blend precision pacing with emotional storytelling to make every second count.</p>
         </div>
 
         <div class="trigger-container fade-up delay-3">
@@ -588,188 +639,4 @@
                     <div class="image-wrapper">
                         <img src="photo1.jpg.webp" alt="Luminous Echoes" class="gallery-thumb">
                         <div class="image-overlay">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <polyline points="9 21 3 21 3 15"></polyline>
-                                <line x1="21" y1="3" x2="14" y2="10"></line>
-                                <line x1="3" y1="21" x2="10" y2="14"></line>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4>LUMINOUS ECHOES</h4>
-                    <p>CINEMATIC TONES</p>
-                </div>
-
-                <div class="card gallery-card" onclick="openModal('photo2.jpg.webp', 'URBAN PERSPECTIVE', false)">
-                    <div class="image-wrapper">
-                        <img src="photo2.jpg.webp" alt="Urban Perspective" class="gallery-thumb">
-                        <div class="image-overlay">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <polyline points="9 21 3 21 3 15"></polyline>
-                                <line x1="21" y1="3" x2="14" y2="10"></line>
-                                <line x1="3" y1="21" x2="10" y2="14"></line>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4>URBAN PERSPECTIVE</h4>
-                    <p>STREET VISIONS</p>
-                </div>
-
-                <div class="card gallery-card" onclick="openModal('photo3.jpg.webp', 'ETHEREAL MOMENTS', false)">
-                    <div class="image-wrapper">
-                        <img src="photo3.jpg.webp" alt="Ethereal Moments" class="gallery-thumb">
-                        <div class="image-overlay">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <polyline points="9 21 3 21 3 15"></polyline>
-                                <line x1="21" y1="3" x2="14" y2="10"></line>
-                                <line x1="3" y1="21" x2="10" y2="14"></line>
-                            </svg>
-                        </div>
-                    </div>
-                    <h4>ETHEREAL MOMENTS</h4>
-                    <p>MOOD & LIGHT</p>
-                </div>
-            </div>
-
-            <div class="checkout-more">
-                <p>CHECK OUT MORE PHOTOS ON MY INSTAGRAM</p>
-                <div class="checkout-more-links">
-                    <a href="https://www.instagram.com/photography__moopan/" target="_blank">@PHOTOGRAPHY__MOOPAN</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="fade-up delay-4" style="margin-top: clamp(3rem, 6vw, 5rem);">
-            <h2 class="section-title gradient-subheading">Let's Work Together</h2>
-            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Looking for an editor or photographer for your next project? Drop me a message or give me a call.</p>
-            
-            <div class="social-links">
-                <a href="https://www.youtube.com/@FilmingMoopan" target="_blank" class="icon-btn" title="YouTube">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
-                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                    </svg>
-                </a>
-
-                <button onclick="openInstaModal()" class="icon-btn" title="Instagram Profiles">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </button>
-
-                <a href="mailto:filmingmoopan@gmail.com" class="icon-btn" title="Email Me">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                </a>
-
-                <a href="tel:9074146219" class="icon-btn" title="Call Me">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <footer class="fade-up delay-4">
-        <p>&copy; 2026 MOOPAN. All rights reserved.</p>
-    </footer>
-
-    <div id="photoModal" class="modal" onclick="if(event.target === this) closeModal()">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage" onclick="event.stopPropagation()">
-        <div id="modalCaption"></div>
-    </div>
-
-    <div id="instaModal" class="modal" onclick="if(event.target === this) closeInstaModal()">
-        <span class="close-modal" onclick="closeInstaModal()">&times;</span>
-        <div class="insta-box" onclick="event.stopPropagation()">
-            <h3 style="margin-bottom: 10px; color: #ffffff; letter-spacing: 3px;">SELECT PROFILE</h3>
-            <a href="https://www.instagram.com/_.pranav.menon._/" target="_blank" class="insta-link">PERSONAL</a>
-            <a href="https://www.instagram.com/filming.moopan/" target="_blank" class="insta-link">VIDEO EDITING</a>
-            <a href="https://www.instagram.com/photography__moopan/" target="_blank" class="insta-link">PHOTOGRAPHY</a>
-        </div>
-    </div>
-
-    <script>
-        // Reveal Portfolios
-        function toggleSection(sectionId) {
-            var section = document.getElementById(sectionId);
-            
-            if (section.classList.contains("active")) {
-                section.classList.remove("active");
-            } else {
-                document.querySelectorAll('.hidden-section').forEach(el => el.classList.remove('active'));
-                section.classList.add("active");
-                
-                setTimeout(() => {
-                    const y = section.getBoundingClientRect().top + window.scrollY - 20;
-                    window.scrollTo({top: y, behavior: 'smooth'});
-                }, 100);
-            }
-        }
-
-        // --- PHOTO/LOGO MODAL LOGIC ---
-        function openModal(imageSrc, captionText, isLogo = false) {
-            var modal = document.getElementById("photoModal");
-            var modalImg = document.getElementById("modalImage");
-            var caption = document.getElementById("modalCaption");
-            
-            modalImg.src = imageSrc;
-
-            if(isLogo) {
-                modalImg.classList.add("is-logo");
-                caption.style.display = "none";
-            } else {
-                modalImg.classList.remove("is-logo");
-                caption.style.display = "block";
-                caption.innerHTML = captionText;
-            }
-            
-            modal.style.display = "flex";
-            setTimeout(() => {
-                modal.classList.add("show");
-            }, 10);
-        }
-
-        function closeModal() {
-            var modal = document.getElementById("photoModal");
-            modal.classList.remove("show");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 400); 
-        }
-
-        // --- INSTAGRAM MODAL LOGIC ---
-        function openInstaModal() {
-            var modal = document.getElementById("instaModal");
-            modal.style.display = "flex";
-            setTimeout(() => {
-                modal.classList.add("show");
-            }, 10);
-        }
-
-        function closeInstaModal() {
-            var modal = document.getElementById("instaModal");
-            modal.classList.remove("show");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 400); 
-        }
-
-        // Close Modals if user presses Escape key
-        document.addEventListener('keydown', function(event){
-            if(event.key === "Escape"){
-                closeModal();
-                closeInstaModal();
-            }
-        });
-    </script>
-</body>
-</html>
+                            <svg viewBox
