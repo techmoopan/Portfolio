@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filming Moopan | Video Editor & Photographer</title>
+    <title>Moopan | Video Editor & Photographer</title>
     <style>
         /* --- CUSTOM FONTS --- */
         @font-face {
@@ -22,7 +22,6 @@
             font-display: swap;
         }
 
-        /* NEW FONT FOR TITLE */
         @font-face {
             font-family: 'Gimbal Extend Regular';
             src: url('GimbalExtendRegular.otf') format('opentype');
@@ -33,7 +32,7 @@
 
         /* --- CORE STYLES --- */
         :root {
-            --primary-cyan: #00d2ff;
+            --glow-color: #ffffff;
             --bg-dark: #02050a;
         }
 
@@ -48,8 +47,6 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative; 
-            
-            /* THIS MAKES ALL TEXT ON THE WEBSITE UPPERCASE */
             text-transform: uppercase; 
         }
         
@@ -83,7 +80,7 @@
 
         /* --- ACCESSIBILITY FOR TV REMOTES & KEYBOARDS --- */
         *:focus-visible {
-            outline: 3px solid var(--primary-cyan);
+            outline: 3px solid var(--glow-color);
             outline-offset: 4px;
             border-radius: 8px;
         }
@@ -111,20 +108,22 @@
         }
         
         header h1 { 
-            /* APPLIED GIMBAL EXTEND FONT TO TITLE ONLY */
             font-family: 'Gimbal Extend Regular', sans-serif;
-            /* Adjusted size specifically for wide extended fonts so it fits mobiles */
-            font-size: clamp(1.5rem, 4.5vw, 4rem); 
+            font-size: clamp(1.8rem, 3.5vw, 3.2rem); 
             color: #ffffff;
-            text-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
             letter-spacing: 3px;
         }
         
+        /* Dark Blue to White Gradient for Subheading */
         header p { 
             font-size: clamp(0.9rem, 2vw, 1.3rem); 
-            color: #93c5fd; 
             margin-top: 15px;
             letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         /* --- LAYOUT --- */
@@ -133,14 +132,17 @@
             margin: 0 auto; 
             padding: clamp(1rem, 4vw, 3rem); 
         }
+
+        /* Dark Blue to White Gradient for Section Titles */
         .section-title { 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
             padding-bottom: 0.5rem; 
             margin-top: clamp(2rem, 5vw, 4rem); 
             margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--primary-cyan);
             font-size: clamp(1.3rem, 3vw, 2rem);
-            text-shadow: 0 2px 10px rgba(0, 210, 255, 0.2);
+            background: linear-gradient(90deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .grid { 
@@ -196,8 +198,8 @@
         .works-box:hover, .works-box:focus { 
             transform: translateY(-8px); 
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.15);
         }
         .works-box:active { transform: translateY(-2px) scale(0.98); }
 
@@ -205,7 +207,7 @@
             width: clamp(40px, 8vw, 64px);
             height: clamp(40px, 8vw, 64px);
             margin-bottom: 15px;
-            color: var(--primary-cyan);
+            color: var(--glow-color);
             stroke-width: 1.2;
             transition: transform 0.3s ease;
         }
@@ -219,7 +221,7 @@
 
         .video-card:hover {
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-            border-color: rgba(255,255,255,0.1);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .card h4, .video-card h4 { margin: 15px 0 5px 0; font-size: clamp(1rem, 2vw, 1.3rem); color: #ffffff; }
@@ -251,9 +253,9 @@
             padding: 10px;
         }
         .card:hover .image-placeholder {
-            border-color: rgba(0, 210, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
             background-color: rgba(0,0,0,0.5);
-            color: var(--primary-cyan);
+            color: var(--glow-color);
         }
 
         /* --- HIDDEN SECTIONS (SMOOTH REVEAL) --- */
@@ -295,10 +297,10 @@
         .icon-btn svg { width: clamp(20px, 4vw, 28px); height: clamp(20px, 4vw, 28px); }
         .icon-btn:hover, .icon-btn:focus {
             transform: translateY(-5px);
-            background: rgba(0, 210, 255, 0.1);
-            border-color: var(--primary-cyan);
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
-            color: var(--primary-cyan);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--glow-color);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+            color: var(--glow-color);
         }
         .icon-btn:active { transform: scale(0.95); }
 
@@ -322,17 +324,17 @@
 </head>
 <body>
 
-    <img src="logo.png" alt="Filming Moopan Logo" class="top-logo fade-up">
+    <img src="logo.png" alt="Moopan Logo" class="top-logo fade-up">
 
     <header class="fade-up delay-1">
-        <h1>Filming Moopan</h1>
+        <h1>Moopan</h1>
         <p>Social Media Content | Multifandom Editor | Photography</p>
     </header>
 
     <div class="container">
         <div class="fade-up delay-2">
             <h2 class="section-title">About My Style</h2>
-            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, high-retention social media content, and visual photography. I blend precision pacing with emotional storytelling to make every second count.</p>
+            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem); line-height: 1.8;">Specializing in cinematic trailer cuts, custom typography-heavy edits, high-retention social media content, and visual photography. I blend precision pacing with emotional storytelling to make every second count.</p>
         </div>
 
         <div class="trigger-container fade-up delay-3">
@@ -453,7 +455,7 @@
     </div>
 
     <footer class="fade-up delay-4">
-        <p>&copy; 2026 Filming Moopan. All rights reserved.</p>
+        <p>&copy; 2026 MOOPAN. All rights reserved.</p>
     </footer>
 
     <script>
