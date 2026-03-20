@@ -32,7 +32,7 @@
 
         /* --- CORE STYLES --- */
         :root {
-            var(--primary-glow): #ffffff;
+            --primary-glow: #ffffff;
             --bg-dark: #02050a;
         }
 
@@ -68,7 +68,7 @@
         .gradient-subheading {
             background: linear-gradient(90deg, #1a365d, #ffffff, #2a5298, #ffffff, #1a365d);
             background-size: 300% 300%;
-            animation: textGradient 12s ease infinite; /* Slowed down from 6s to 12s */
+            animation: textGradient 12s ease infinite; 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -126,7 +126,7 @@
         }
         header h1 { 
             font-family: 'GimbalExtendRegular', sans-serif; 
-            font-size: clamp(2.2rem, 6vw, 4.5rem); /* Perfectly balanced size */
+            font-size: clamp(2.2rem, 6vw, 4.5rem); 
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
             letter-spacing: 4px;
@@ -259,7 +259,7 @@
         .gallery-thumb {
             width: 100%;
             height: 100%;
-            object-fit: contain; 
+            object-fit: cover; 
             transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .image-overlay {
@@ -290,7 +290,24 @@
             transform: scale(1);
         }
 
-        /* --- PHOTO LIGHTBOX MODAL --- */
+        .checkout-more {
+            text-align: center;
+            margin-top: 3rem;
+            font-family: 'StretchPro', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+        }
+        .checkout-more a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .checkout-more a:hover {
+            color: #93c5fd;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- LIGHTBOX MODALS (Photos & Insta) --- */
         .modal {
             display: none;
             position: fixed;
@@ -331,6 +348,44 @@
             background: transparent;
             max-width: 80%;
             max-height: 60vh;
+        }
+
+        /* --- INSTA BLUR BOX --- */
+        .insta-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: clamp(280px, 50vw, 400px);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .modal.show .insta-box {
+            transform: scale(1);
+        }
+        .insta-link {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            font-family: 'StretchPro', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            background: rgba(0,0,0,0.2);
+        }
+        .insta-link:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
         }
 
         .close-modal {
@@ -395,7 +450,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            text-decoration: none; /* In case it's a link */
+            text-decoration: none; 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             outline: none;
@@ -502,9 +557,9 @@
             <h2 class="section-title gradient-subheading">Photography</h2>
             <div class="grid">
                 
-                <div class="card gallery-card" onclick="openModal('logo.png', 'Landscape', false)">
+                <div class="card gallery-card" onclick="openModal('photo1.jpg.webp', 'LUMINOUS ECHOES', false)">
                     <div class="image-wrapper">
-                        <img src="logo.png" alt="Landscape" class="gallery-thumb">
+                        <img src="photo1.jpg.webp" alt="Luminous Echoes" class="gallery-thumb">
                         <div class="image-overlay">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -514,13 +569,13 @@
                             </svg>
                         </div>
                     </div>
-                    <h4>Landscape</h4>
-                    <p>Nature</p>
+                    <h4>LUMINOUS ECHOES</h4>
+                    <p>CINEMATIC TONES</p>
                 </div>
 
-                <div class="card gallery-card" onclick="openModal('logo.png', 'Portrait', false)">
+                <div class="card gallery-card" onclick="openModal('photo2.jpg.webp', 'URBAN PERSPECTIVE', false)">
                     <div class="image-wrapper">
-                        <img src="logo.png" alt="Portrait" class="gallery-thumb">
+                        <img src="photo2.jpg.webp" alt="Urban Perspective" class="gallery-thumb">
                         <div class="image-overlay">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -530,13 +585,13 @@
                             </svg>
                         </div>
                     </div>
-                    <h4>Portrait</h4>
-                    <p>Street</p>
+                    <h4>URBAN PERSPECTIVE</h4>
+                    <p>STREET VISIONS</p>
                 </div>
 
-                <div class="card gallery-card" onclick="openModal('logo.png', 'Cinematic', false)">
+                <div class="card gallery-card" onclick="openModal('photo3.jpg.webp', 'ETHEREAL MOMENTS', false)">
                     <div class="image-wrapper">
-                        <img src="logo.png" alt="Cinematic" class="gallery-thumb">
+                        <img src="photo3.jpg.webp" alt="Ethereal Moments" class="gallery-thumb">
                         <div class="image-overlay">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="15 3 21 3 21 9"></polyline>
@@ -546,10 +601,14 @@
                             </svg>
                         </div>
                     </div>
-                    <h4>Cinematic</h4>
-                    <p>Color Graded</p>
+                    <h4>ETHEREAL MOMENTS</h4>
+                    <p>MOOD & LIGHT</p>
                 </div>
+            </div>
 
+            <div class="checkout-more">
+                <p>CHECK OUT MORE ON MY INSTAGRAM</p>
+                <a href="https://www.instagram.com/photography__moopan/" target="_blank">@PHOTOGRAPHY__MOOPAN</a>
             </div>
         </div>
 
@@ -565,13 +624,13 @@
                     </svg>
                 </a>
 
-                <a href="https://www.instagram.com/filming.moopan/" target="_blank" class="icon-btn" title="Instagram">
+                <button onclick="openInstaModal()" class="icon-btn" title="Instagram Profiles">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
-                </a>
+                </button>
 
                 <a href="mailto:filmingmoopan@gmail.com" class="icon-btn" title="Email Me">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -599,6 +658,16 @@
         <div id="modalCaption"></div>
     </div>
 
+    <div id="instaModal" class="modal" onclick="if(event.target === this) closeInstaModal()">
+        <span class="close-modal" onclick="closeInstaModal()">&times;</span>
+        <div class="insta-box" onclick="event.stopPropagation()">
+            <h3 style="margin-bottom: 10px; color: #ffffff; letter-spacing: 3px;">SELECT PROFILE</h3>
+            <a href="https://www.instagram.com/_.pranav.menon._/" target="_blank" class="insta-link">PERSONAL</a>
+            <a href="https://www.instagram.com/filming.moopan/" target="_blank" class="insta-link">VIDEO EDITING</a>
+            <a href="https://www.instagram.com/photography__moopan/" target="_blank" class="insta-link">PHOTOGRAPHY</a>
+        </div>
+    </div>
+
     <script>
         // Reveal Portfolios
         function toggleSection(sectionId) {
@@ -617,7 +686,7 @@
             }
         }
 
-        // --- MODAL LOGIC (Differentiates Logo vs Photo) ---
+        // --- PHOTO/LOGO MODAL LOGIC ---
         function openModal(imageSrc, captionText, isLogo = false) {
             var modal = document.getElementById("photoModal");
             var modalImg = document.getElementById("modalImage");
@@ -650,10 +719,28 @@
             }, 400); 
         }
 
-        // Close Modal if user presses Escape key
+        // --- INSTAGRAM MODAL LOGIC ---
+        function openInstaModal() {
+            var modal = document.getElementById("instaModal");
+            modal.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10);
+        }
+
+        function closeInstaModal() {
+            var modal = document.getElementById("instaModal");
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 400); 
+        }
+
+        // Close Modals if user presses Escape key
         document.addEventListener('keydown', function(event){
             if(event.key === "Escape"){
                 closeModal();
+                closeInstaModal();
             }
         });
     </script>
