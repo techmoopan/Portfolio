@@ -64,7 +64,7 @@
             margin: 0;
         }
 
-        /* --- ANIMATED GRADIENT FOR SUBHEADINGS (SLOWED DOWN) --- */
+        /* --- ANIMATED GRADIENT FOR SUBHEADINGS --- */
         .gradient-subheading {
             background: linear-gradient(90deg, #1a365d, #ffffff, #2a5298, #ffffff, #1a365d);
             background-size: 300% 300%;
@@ -290,21 +290,40 @@
             transform: scale(1);
         }
 
+        /* --- CHECKOUT MORE LINKS --- */
         .checkout-more {
             text-align: center;
             margin-top: 3rem;
-            font-family: 'StretchPro', sans-serif;
-            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            font-family: 'LEMONMILK-Regular', sans-serif;
+            font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            letter-spacing: 1px;
+        }
+        .checkout-more p {
+            margin-bottom: 15px;
+            color: #94a3b8;
+        }
+        .checkout-more-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
         }
         .checkout-more a {
             color: #ffffff;
             text-decoration: none;
             transition: all 0.3s ease;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            display: inline-block;
         }
         .checkout-more a:hover {
-            color: #93c5fd;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            background: rgba(255,255,255,0.1);
+            border-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
 
         /* --- LIGHTBOX MODALS (Photos & Insta) --- */
@@ -551,6 +570,14 @@
                     <p>Ana De Armas | Action Edit</p>
                 </div>
             </div>
+
+            <div class="checkout-more">
+                <p>CHECK OUT MORE VIDEOS ON MY CHANNELS</p>
+                <div class="checkout-more-links">
+                    <a href="https://www.youtube.com/@FilmingMoopan" target="_blank">YOUTUBE: @FILMINGMOOPAN</a>
+                    <a href="https://www.instagram.com/filming.moopan/" target="_blank">IG: @FILMING.MOOPAN</a>
+                </div>
+            </div>
         </div>
 
         <div id="posters-section" class="hidden-section">
@@ -607,8 +634,10 @@
             </div>
 
             <div class="checkout-more">
-                <p>CHECK OUT MORE ON MY INSTAGRAM</p>
-                <a href="https://www.instagram.com/photography__moopan/" target="_blank">@PHOTOGRAPHY__MOOPAN</a>
+                <p>CHECK OUT MORE PHOTOS ON MY INSTAGRAM</p>
+                <div class="checkout-more-links">
+                    <a href="https://www.instagram.com/photography__moopan/" target="_blank">@PHOTOGRAPHY__MOOPAN</a>
+                </div>
             </div>
         </div>
 
@@ -695,11 +724,9 @@
             modalImg.src = imageSrc;
 
             if(isLogo) {
-                // Remove frame and caption for the Logo
                 modalImg.classList.add("is-logo");
                 caption.style.display = "none";
             } else {
-                // Keep frame and caption for Photography
                 modalImg.classList.remove("is-logo");
                 caption.style.display = "block";
                 caption.innerHTML = captionText;
