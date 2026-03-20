@@ -125,7 +125,7 @@
             transform: scale(1);
         }
 
-        /* --- ACCESSIBILITY FOR TV REMOTES & KEYBOARDS --- */
+        /* --- ACCESSIBILITY --- */
         *:focus-visible {
             outline: 3px solid var(--glow-color);
             outline-offset: 4px;
@@ -280,27 +280,38 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .image-placeholder {
-            background-color: rgba(0, 0, 0, 0.3);
+        /* Specific style to crop and fit your uploaded photos perfectly */
+        .portfolio-img {
+            width: 100%;
             height: clamp(180px, 25vw, 300px);
+            object-fit: cover; 
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-weight: normal;
-            letter-spacing: 2px;
-            font-family: 'StretchPro', sans-serif;
-            font-size: clamp(0.7rem, 1.5vw, 1rem);
-            border: 1px dashed rgba(255,255,255,0.1);
+            display: block;
+            border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.3s ease;
-            text-align: center;
-            padding: 10px;
         }
-        .card:hover .image-placeholder {
-            border-color: rgba(255, 255, 255, 0.3);
-            background-color: rgba(0,0,0,0.5);
+        .card:hover .portfolio-img {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.1);
+        }
+
+        /* Call to Action Text */
+        .cta-text {
+            text-align: center;
+            margin-top: 3rem;
+            color: #94a3b8;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            letter-spacing: 1px;
+        }
+        .cta-text a {
             color: var(--glow-color);
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .cta-text a:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
 
         /* --- HIDDEN SECTIONS (SMOOTH REVEAL) --- */
@@ -338,7 +349,7 @@
             cursor: pointer;
             outline: none;
             padding: 0;
-            text-decoration: none; /* Ensures no underline on links */
+            text-decoration: none; 
         }
         .icon-btn svg { width: clamp(20px, 4vw, 28px); height: clamp(20px, 4vw, 28px); }
         .icon-btn:hover, .icon-btn:focus {
@@ -451,21 +462,25 @@
             <h2 class="section-title">Photography</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="image-placeholder">PHOTO 1</div>
+                    <img src="photo1.jpg" alt="Photography 1" class="portfolio-img">
                     <h4>Landscape</h4>
                     <p>Nature</p>
                 </div>
                 <div class="card">
-                    <div class="image-placeholder">PHOTO 2</div>
+                    <img src="photo2.jpg" alt="Photography 2" class="portfolio-img">
                     <h4>Portrait</h4>
                     <p>Street</p>
                 </div>
                 <div class="card">
-                    <div class="image-placeholder">PHOTO 3</div>
+                    <img src="photo3.jpg" alt="Photography 3" class="portfolio-img">
                     <h4>Cinematic</h4>
                     <p>Color Graded</p>
                 </div>
             </div>
+            
+            <p class="cta-text">
+                Check out more of my photos on <a href="https://www.instagram.com/photography__moopan/" target="_blank">@photography__moopan</a>
+            </p>
         </div>
 
         <div class="fade-up delay-4" style="margin-top: clamp(3rem, 6vw, 5rem);">
@@ -480,7 +495,23 @@
                     </svg>
                 </a>
 
-                <a href="https://www.instagram.com/filming.moopan/" target="_blank" class="icon-btn" title="Instagram">
+                <a href="https://www.instagram.com/filming.moopan/" target="_blank" class="icon-btn" title="Filming Moopan Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/_.pranav.menon._/" target="_blank" class="icon-btn" title="Personal Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/photography__moopan/" target="_blank" class="icon-btn" title="Photography Instagram">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
