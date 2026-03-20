@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filming Moopan | Video Editor & Designer</title>
+    <title>Filming Moopan | Video Editor & Photographer</title>
     <style>
         /* --- CUSTOM FONTS --- */
         @font-face {
             font-family: 'StretchPro';
             src: url('StretchPro.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'LEMONMILK-Regular';
+            src: url('LEMONMILK-Regular.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -22,7 +30,8 @@
 
         body { 
             margin: 0; 
-            font-family: 'Lemon Milk', 'Century Gothic', sans-serif; 
+            /* Content font set to your exact LEMONMILK-Regular font */
+            font-family: 'LEMONMILK-Regular', 'Century Gothic', sans-serif; 
             background: linear-gradient(-45deg, #02050a, #0d2347, #081122, #1a0b2e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -30,6 +39,7 @@
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative; /* Needed for absolute positioning of logo */
         }
         
         @keyframes gradientBG {
@@ -44,6 +54,20 @@
             font-style: normal;
             letter-spacing: 2px;
             margin: 0;
+        }
+
+        /* --- TOP RIGHT LOGO --- */
+        .top-logo {
+            position: absolute;
+            top: clamp(15px, 4vw, 30px);
+            right: clamp(15px, 4vw, 40px);
+            width: clamp(50px, 8vw, 80px); /* Resizes smoothly for phone to TV */
+            height: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+        .top-logo:hover {
+            transform: scale(1.1) rotate(5deg);
         }
 
         /* --- ACCESSIBILITY FOR TV REMOTES & KEYBOARDS --- */
@@ -68,14 +92,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- HEADER (Fluid Sizes for Mobile to TV) --- */
+        /* --- HEADER --- */
         header { 
-            padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem); 
+            padding: clamp(6rem, 12vw, 8rem) clamp(1rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem); 
             text-align: center; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
         }
         header h1 { 
-            /* Scales smoothly from mobile to 4K TV */
             font-size: clamp(2rem, 6vw, 5rem); 
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
@@ -86,12 +109,10 @@
             color: #93c5fd; 
             margin-top: 15px;
             letter-spacing: 1.5px;
-            font-family: 'Lemon Milk', 'Century Gothic', sans-serif;
         }
 
         /* --- LAYOUT --- */
         .container { 
-            /* Wider max-width for ultra-wide monitors and TVs */
             max-width: 1400px; 
             margin: 0 auto; 
             padding: clamp(1rem, 4vw, 3rem); 
@@ -106,7 +127,6 @@
             text-shadow: 0 2px 10px rgba(0, 210, 255, 0.2);
         }
 
-        /* Grid adapts automatically from 1 column (mobile) to multi-column (TV/PC) */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
@@ -138,7 +158,7 @@
         .works-box {
             text-align: center;
             padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
-            flex: 1 1 300px; /* Flexbox magic for mobile stacking */
+            flex: 1 1 300px;
             max-width: 500px;
             cursor: pointer;
             display: flex;
@@ -236,7 +256,7 @@
         /* --- SOCIAL BUTTONS --- */
         .social-links {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on tiny phones */
+            flex-wrap: wrap; 
             gap: 15px;
             margin-top: 25px;
         }
@@ -286,18 +306,20 @@
 </head>
 <body>
 
-    <header class="fade-up">
+    <img src="logo.png" alt="Filming Moopan Logo" class="top-logo fade-up">
+
+    <header class="fade-up delay-1">
         <h1>Filming Moopan</h1>
-        <p>Social Media Content | Multifandom Editor | Typography Design</p>
+        <p>Social Media Content | Multifandom Editor | Photography</p>
     </header>
 
     <div class="container">
-        <div class="fade-up delay-1">
+        <div class="fade-up delay-2">
             <h2 class="section-title">About My Style</h2>
-            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, and high-retention social media content. I blend precision pacing with emotional storytelling to make every second count.</p>
+            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, high-retention social media content, and visual photography. I blend precision pacing with emotional storytelling to make every second count.</p>
         </div>
 
-        <div class="trigger-container fade-up delay-2">
+        <div class="trigger-container fade-up delay-3">
             <button class="card works-box" onclick="toggleSection('portfolio-section')" aria-label="View Video Portfolio">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
@@ -313,15 +335,13 @@
                 <p>View my video edits</p>
             </button>
 
-            <button class="card works-box" onclick="toggleSection('posters-section')" aria-label="View Poster Designs">
+            <button class="card works-box" onclick="toggleSection('posters-section')" aria-label="View Photography">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-                    <path d="M2 2l7.58 7.58"></path>
-                    <circle cx="11" cy="11" r="2"></circle>
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
                 </svg>
-                <h3>Poster Works & Logos</h3>
-                <p>View my designs</p>
+                <h3>Photography</h3>
+                <p>View my captures</p>
             </button>
         </div>
 
@@ -360,29 +380,29 @@
         </div>
 
         <div id="posters-section" class="hidden-section">
-            <h2 class="section-title">Posters & Typography</h2>
+            <h2 class="section-title">Photography</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="image-placeholder">POETIC CHINTHAKAL</div>
-                    <h4>Poster Design</h4>
-                    <p>Photoshop</p>
+                    <div class="image-placeholder">PHOTO 1</div>
+                    <h4>Landscape</h4>
+                    <p>Nature</p>
                 </div>
                 <div class="card">
-                    <div class="image-placeholder">MICMAGICMOMENT</div>
-                    <h4>Logo Creation</h4>
-                    <p>Illustrator</p>
+                    <div class="image-placeholder">PHOTO 2</div>
+                    <h4>Portrait</h4>
+                    <p>Street</p>
                 </div>
                 <div class="card">
-                    <div class="image-placeholder">4 YEARS</div>
-                    <h4>Malayalam Typography</h4>
-                    <p>Custom Lettering</p>
+                    <div class="image-placeholder">PHOTO 3</div>
+                    <h4>Cinematic</h4>
+                    <p>Color Graded</p>
                 </div>
             </div>
         </div>
 
-        <div class="fade-up delay-3" style="margin-top: clamp(3rem, 6vw, 5rem);">
+        <div class="fade-up delay-4" style="margin-top: clamp(3rem, 6vw, 5rem);">
             <h2 class="section-title">Let's Work Together</h2>
-            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Looking for an editor for your next project? Drop me a message or give me a call.</p>
+            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Looking for an editor or photographer for your next project? Drop me a message or give me a call.</p>
             
             <div class="social-links">
                 <a href="https://www.youtube.com/@FilmingMoopan" target="_blank" class="icon-btn" title="YouTube">
@@ -431,7 +451,6 @@
                 section.classList.add("active");
                 
                 setTimeout(() => {
-                    // Adjusted for mobile scrolling offset
                     const y = section.getBoundingClientRect().top + window.scrollY - 20;
                     window.scrollTo({top: y, behavior: 'smooth'});
                 }, 100);
@@ -442,7 +461,6 @@
             navigator.clipboard.writeText(text).then(function() {
                 alert(type + " (" + text + ") copied to clipboard!");
             }).catch(function(err) {
-                // Fallback for older Smart TV browsers
                 prompt("Copy this " + type + ":", text);
             });
         }
