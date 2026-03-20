@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOOPAN | Video Editor & Photographer</title>
     <style>
-        /* --- GLOBAL SIZING FIX (Prevents Mobile Overflow) --- */
+        /* --- GLOBAL SIZING FIX --- */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -128,20 +128,30 @@
             padding: clamp(6rem, 12vw, 8rem) clamp(1rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem); 
             text-align: center; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        
         header h1 { 
             font-family: 'GimbalExtendRegular', sans-serif; 
-            font-size: clamp(2.2rem, 6vw, 4.5rem); 
+            /* Reduced vertical size */
+            font-size: clamp(1.5rem, 4vw, 2.5rem); 
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
-            letter-spacing: 4px;
+            /* Massive letter spacing to match subheading length */
+            letter-spacing: clamp(10px, 3.5vw, 35px); 
+            /* Negative margin right offsets the final letter's spacing so it stays perfectly centered */
+            margin-right: calc(clamp(10px, 3.5vw, 35px) * -1);
         }
+        
         header p { 
             font-size: clamp(0.85rem, 2vw, 1.3rem); 
             color: #ffffff; 
             margin-top: 15px;
             letter-spacing: 1px;
             opacity: 0.8;
+            max-width: 90%;
         }
 
         /* --- LAYOUT --- */
@@ -486,22 +496,19 @@
             color: #64748b;
         }
 
-        /* =========================================
-           📱 EXCLUSIVE MOBILE UI FIXES
-           These rules ONLY apply to phones, ensuring
-           perfect margins, centered layouts, and
-           readable text without affecting laptops!
-           ========================================= */
+        /* --- MOBILE OVERRIDES --- */
         @media (max-width: 768px) {
             header {
                 padding: 5rem 1rem 2rem;
             }
             header h1 {
-                font-size: clamp(2rem, 8vw, 2.8rem);
-                letter-spacing: 2px; /* Prevents text overflow */
+                /* Adjusted specifically for mobile to keep the box shape */
+                font-size: clamp(1.2rem, 5vw, 2rem);
+                letter-spacing: clamp(6px, 2vw, 15px);
+                margin-right: calc(clamp(6px, 2vw, 15px) * -1);
             }
             header p {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
                 letter-spacing: 1px;
             }
             .container {
@@ -522,27 +529,26 @@
                 margin-bottom: 1.2rem;
             }
             .grid {
-                gap: 1.2rem; /* Tighter layout for videos/photos */
+                gap: 1.2rem; 
             }
             .card, .video-card {
                 padding: 1.2rem; 
                 border-radius: 16px;
             }
             .checkout-more-links {
-                flex-direction: column; /* Stack buttons vertically on mobile */
+                flex-direction: column; 
                 width: 100%;
             }
             .checkout-more a {
-                width: 100%; /* Full width buttons look great on phones */
+                width: 100%; 
                 text-align: center;
                 box-sizing: border-box;
             }
-            /* Center the Contact Section specifically for mobile */
             .contact-section {
                 text-align: center;
             }
             .social-links {
-                justify-content: center; /* Centers the round buttons */
+                justify-content: center; 
                 gap: 12px;
                 width: 100%;
             }
@@ -551,7 +557,7 @@
                 height: 50px;
             }
             .insta-box {
-                min-width: 85vw; /* Fits the blurred menu perfectly on screen */
+                min-width: 85vw; 
                 padding: 2rem 1.5rem;
             }
         }
