@@ -73,9 +73,48 @@
             height: auto;
             z-index: 100;
             transition: transform 0.3s ease;
+            cursor: pointer; /* Shows it's clickable */
         }
         .top-logo:hover {
             transform: scale(1.1) rotate(5deg);
+        }
+
+        /* --- LOGO POPUP MODAL --- */
+        .logo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            cursor: pointer; /* Suggests background can be clicked */
+        }
+        
+        .logo-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .logo-modal-content {
+            max-width: 80%;
+            max-height: 80vh;
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+            cursor: default; /* Prevents pointer on the image itself */
+        }
+
+        .logo-modal.active .logo-modal-content {
+            transform: scale(1);
         }
 
         /* --- ACCESSIBILITY FOR TV REMOTES & KEYBOARDS --- */
@@ -115,7 +154,6 @@
             letter-spacing: 3px;
         }
         
-        /* Dark Blue to White Gradient for Subheading */
         header p { 
             font-size: clamp(0.9rem, 2vw, 1.3rem); 
             margin-top: 15px;
@@ -133,7 +171,6 @@
             padding: clamp(1rem, 4vw, 3rem); 
         }
 
-        /* Dark Blue to White Gradient for Section Titles */
         .section-title { 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
             padding-bottom: 0.5rem; 
@@ -324,7 +361,11 @@
 </head>
 <body>
 
-    <img src="logo.png" alt="Moopan Logo" class="top-logo fade-up">
+    <div id="logoModal" class="logo-modal" onclick="closeLogoModal(event)">
+        <img src="logo.png" alt="Moopan Logo Enlarged" class="logo-modal-content" id="modalImage">
+    </div>
+
+    <img src="logo.png" alt="Moopan Logo" class="top-logo fade-up" onclick="openLogoModal()">
 
     <header class="fade-up delay-1">
         <h1>Moopan</h1>
@@ -459,6 +500,7 @@
     </footer>
 
     <script>
+        // Section Toggles
         function toggleSection(sectionId) {
             var section = document.getElementById(sectionId);
             
@@ -475,12 +517,25 @@
             }
         }
 
+        // Copy Functions
         function copyData(text, type) {
             navigator.clipboard.writeText(text).then(function() {
                 alert(type + " (" + text + ") copied to clipboard!");
             }).catch(function(err) {
                 prompt("Copy this " + type + ":", text);
             });
+        }
+
+        // Logo Modal Functions
+        function openLogoModal() {
+            document.getElementById("logoModal").classList.add("active");
+        }
+
+        function closeLogoModal(event) {
+            // Check if the click happened on the background specifically, NOT the image
+            if (event.target.id === "logoModal") {
+                document.getElementById("logoModal").classList.remove("active");
+            }
         }
     </script>
 </body>
