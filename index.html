@@ -22,6 +22,15 @@
             font-display: swap;
         }
 
+        /* NEW FONT FOR TITLE */
+        @font-face {
+            font-family: 'Gimbal Extend Regular';
+            src: url('GimbalExtendRegular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         /* --- CORE STYLES --- */
         :root {
             --primary-cyan: #00d2ff;
@@ -30,7 +39,6 @@
 
         body { 
             margin: 0; 
-            /* Content font set to your exact LEMONMILK-Regular font */
             font-family: 'LEMONMILK-Regular', 'Century Gothic', sans-serif; 
             background: linear-gradient(-45deg, #02050a, #0d2347, #081122, #1a0b2e);
             background-size: 400% 400%;
@@ -39,7 +47,10 @@
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative; /* Needed for absolute positioning of logo */
+            position: relative; 
+            
+            /* THIS MAKES ALL TEXT ON THE WEBSITE UPPERCASE */
+            text-transform: uppercase; 
         }
         
         @keyframes gradientBG {
@@ -61,7 +72,7 @@
             position: absolute;
             top: clamp(15px, 4vw, 30px);
             right: clamp(15px, 4vw, 40px);
-            width: clamp(50px, 8vw, 80px); /* Resizes smoothly for phone to TV */
+            width: clamp(50px, 8vw, 80px); 
             height: auto;
             z-index: 100;
             transition: transform 0.3s ease;
@@ -98,12 +109,17 @@
             text-align: center; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
         }
+        
         header h1 { 
-            font-size: clamp(2rem, 6vw, 5rem); 
+            /* APPLIED GIMBAL EXTEND FONT TO TITLE ONLY */
+            font-family: 'Gimbal Extend Regular', sans-serif;
+            /* Adjusted size specifically for wide extended fonts so it fits mobiles */
+            font-size: clamp(1.5rem, 4.5vw, 4rem); 
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
-            text-transform: uppercase;
+            letter-spacing: 3px;
         }
+        
         header p { 
             font-size: clamp(0.9rem, 2vw, 1.3rem); 
             color: #93c5fd; 
