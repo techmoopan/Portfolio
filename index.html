@@ -11,14 +11,18 @@
             src: url('StretchPro.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
+            font-display: swap;
         }
 
         /* --- CORE STYLES --- */
+        :root {
+            --primary-cyan: #00d2ff;
+            --bg-dark: #02050a;
+        }
+
         body { 
             margin: 0; 
-            /* Content font set to Lemon Milk */
             font-family: 'Lemon Milk', 'Century Gothic', sans-serif; 
-            /* Animated Dark Blue Gradient Background */
             background: linear-gradient(-45deg, #02050a, #0d2347, #081122, #1a0b2e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -34,13 +38,19 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Headings set to StretchPro */
         h1, h2, h3, h4 {
             font-family: 'StretchPro', 'Arial Black', sans-serif;
             font-weight: normal;
             font-style: normal;
             letter-spacing: 2px;
             margin: 0;
+        }
+
+        /* --- ACCESSIBILITY FOR TV REMOTES & KEYBOARDS --- */
+        *:focus-visible {
+            outline: 3px solid var(--primary-cyan);
+            outline-offset: 4px;
+            border-radius: 8px;
         }
 
         /* --- ENTRANCE ANIMATIONS --- */
@@ -55,26 +65,24 @@
         .delay-4 { animation-delay: 0.7s; }
 
         @keyframes fadeUpAnim {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (Fluid Sizes for Mobile to TV) --- */
         header { 
-            padding: 6rem 2rem 4rem; 
+            padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem); 
             text-align: center; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
         }
         header h1 { 
-            font-size: 3.5rem; 
+            /* Scales smoothly from mobile to 4K TV */
+            font-size: clamp(2rem, 6vw, 5rem); 
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
             text-transform: uppercase;
         }
         header p { 
-            font-size: 1.1rem; 
+            font-size: clamp(0.9rem, 2vw, 1.3rem); 
             color: #93c5fd; 
             margin-top: 15px;
             letter-spacing: 1.5px;
@@ -83,27 +91,29 @@
 
         /* --- LAYOUT --- */
         .container { 
-            max-width: 1200px; 
+            /* Wider max-width for ultra-wide monitors and TVs */
+            max-width: 1400px; 
             margin: 0 auto; 
-            padding: 2rem; 
+            padding: clamp(1rem, 4vw, 3rem); 
         }
         .section-title { 
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
             padding-bottom: 0.5rem; 
-            margin-top: 4rem; 
-            margin-bottom: 2rem;
-            color: #00d2ff;
-            font-size: 1.8rem;
+            margin-top: clamp(2rem, 5vw, 4rem); 
+            margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--primary-cyan);
+            font-size: clamp(1.3rem, 3vw, 2rem);
             text-shadow: 0 2px 10px rgba(0, 210, 255, 0.2);
         }
 
+        /* Grid adapts automatically from 1 column (mobile) to multi-column (TV/PC) */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 2.5rem; 
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); 
+            gap: clamp(1.5rem, 3vw, 3rem); 
         }
 
-        /* --- ADVANCED GLASSMORPHISM CARDS --- */
+        /* --- GLASSMORPHISM CARDS --- */
         .card, .video-card { 
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(20px); 
@@ -112,25 +122,24 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
             border-left: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 1.5rem; 
+            padding: clamp(1rem, 2vw, 2rem); 
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Trigger Box Specifics */
+        /* --- TRIGGER BOXES --- */
         .trigger-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
-            margin: 3rem 0;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            margin: clamp(2rem, 5vw, 4rem) 0;
         }
         .works-box {
             text-align: center;
-            padding: 3rem 2rem;
-            flex: 1;
-            min-width: 250px;
-            max-width: 400px;
+            padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem);
+            flex: 1 1 300px; /* Flexbox magic for mobile stacking */
+            max-width: 500px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -138,7 +147,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Glow effect on hover */
         .works-box::before {
             content: '';
             position: absolute;
@@ -149,7 +157,7 @@
         }
         .works-box:hover::before { left: 150%; }
         
-        .works-box:hover { 
+        .works-box:hover, .works-box:focus { 
             transform: translateY(-8px); 
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(0, 210, 255, 0.4);
@@ -158,29 +166,28 @@
         .works-box:active { transform: translateY(-2px) scale(0.98); }
 
         .works-box svg {
-            width: 54px;
-            height: 54px;
+            width: clamp(40px, 8vw, 64px);
+            height: clamp(40px, 8vw, 64px);
             margin-bottom: 15px;
-            color: #00d2ff;
+            color: var(--primary-cyan);
             stroke-width: 1.2;
             transition: transform 0.3s ease;
         }
         .works-box:hover svg { transform: scale(1.1); }
         
         .works-box h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             color: #ffffff;
             margin-bottom: 8px;
         }
 
-        /* Video Card Hovers (No bouncing to allow playing) */
         .video-card:hover {
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
             border-color: rgba(255,255,255,0.1);
         }
 
-        .card h4, .video-card h4 { margin: 15px 0 5px 0; font-size: 1.1rem; color: #ffffff; }
-        .card p, .video-card p { margin: 0; color: #94a3b8; font-size: 0.85rem; letter-spacing: 0.5px; }
+        .card h4, .video-card h4 { margin: 15px 0 5px 0; font-size: clamp(1rem, 2vw, 1.3rem); color: #ffffff; }
+        .card p, .video-card p { margin: 0; color: #94a3b8; font-size: clamp(0.75rem, 1.5vw, 0.95rem); letter-spacing: 0.5px; }
 
         /* --- MEDIA ELEMENTS --- */
         iframe {
@@ -192,7 +199,7 @@
 
         .image-placeholder {
             background-color: rgba(0, 0, 0, 0.3);
-            height: 250px;
+            height: clamp(180px, 25vw, 300px);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -201,15 +208,16 @@
             font-weight: normal;
             letter-spacing: 2px;
             font-family: 'StretchPro', sans-serif;
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 1.5vw, 1rem);
             border: 1px dashed rgba(255,255,255,0.1);
             transition: all 0.3s ease;
             text-align: center;
+            padding: 10px;
         }
         .card:hover .image-placeholder {
             border-color: rgba(0, 210, 255, 0.3);
             background-color: rgba(0,0,0,0.5);
-            color: #00d2ff;
+            color: var(--primary-cyan);
         }
 
         /* --- HIDDEN SECTIONS (SMOOTH REVEAL) --- */
@@ -219,9 +227,7 @@
             transform: translateY(20px);
             animation: smoothReveal 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-        .hidden-section.active {
-            display: block;
-        }
+        .hidden-section.active { display: block; }
 
         @keyframes smoothReveal {
             to { opacity: 1; transform: translateY(0); }
@@ -230,6 +236,7 @@
         /* --- SOCIAL BUTTONS --- */
         .social-links {
             display: flex;
+            flex-wrap: wrap; /* Allows wrapping on tiny phones */
             gap: 15px;
             margin-top: 25px;
         }
@@ -237,8 +244,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 55px;
-            height: 55px;
+            width: clamp(45px, 10vw, 65px);
+            height: clamp(45px, 10vw, 65px);
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -249,25 +256,31 @@
             outline: none;
             padding: 0;
         }
-        .icon-btn svg { width: 22px; height: 22px; }
-        .icon-btn:hover {
+        .icon-btn svg { width: clamp(20px, 4vw, 28px); height: clamp(20px, 4vw, 28px); }
+        .icon-btn:hover, .icon-btn:focus {
             transform: translateY(-5px);
             background: rgba(0, 210, 255, 0.1);
-            border-color: #00d2ff;
+            border-color: var(--primary-cyan);
             box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
-            color: #00d2ff;
+            color: var(--primary-cyan);
         }
         .icon-btn:active { transform: scale(0.95); }
 
         /* --- FOOTER --- */
         footer { 
             text-align: center; 
-            padding: 3rem 2rem; 
+            padding: clamp(2rem, 5vw, 4rem) 2rem; 
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             margin-top: 5rem; 
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 1.5vw, 1rem);
             color: #64748b;
+        }
+
+        /* --- MEDIA QUERIES FOR PHONES --- */
+        @media (max-width: 600px) {
+            .trigger-container { flex-direction: column; }
+            .works-box { width: 100%; max-width: 100%; box-sizing: border-box; padding: 2rem 1rem;}
         }
     </style>
 </head>
@@ -281,11 +294,11 @@
     <div class="container">
         <div class="fade-up delay-1">
             <h2 class="section-title">About My Style</h2>
-            <p>Specializing in cinematic trailer cuts, custom typography-heavy edits, and high-retention social media content. I blend precision pacing with emotional storytelling to make every second count.</p>
+            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Specializing in cinematic trailer cuts, custom typography-heavy edits, and high-retention social media content. I blend precision pacing with emotional storytelling to make every second count.</p>
         </div>
 
         <div class="trigger-container fade-up delay-2">
-            <div class="card works-box" onclick="toggleSection('portfolio-section')">
+            <button class="card works-box" onclick="toggleSection('portfolio-section')" aria-label="View Video Portfolio">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
                     <line x1="7" y1="2" x2="7" y2="22"></line>
@@ -298,9 +311,9 @@
                 </svg>
                 <h3>Works</h3>
                 <p>View my video edits</p>
-            </div>
+            </button>
 
-            <div class="card works-box" onclick="toggleSection('posters-section')">
+            <button class="card works-box" onclick="toggleSection('posters-section')" aria-label="View Poster Designs">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
                     <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
@@ -309,7 +322,7 @@
                 </svg>
                 <h3>Poster Works & Logos</h3>
                 <p>View my designs</p>
-            </div>
+            </button>
         </div>
 
         <div id="portfolio-section" class="hidden-section">
@@ -330,7 +343,7 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 3rem;">Hollywood & Multifandom Edits</h3>
+            <h3 style="margin-top: clamp(2rem, 5vw, 4rem);">Hollywood & Multifandom Edits</h3>
             <div class="grid">
                 <div class="video-card">
                     <iframe src="https://www.youtube.com/embed/PxRmkfx1q9s" title="John wick | Monica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -367,9 +380,9 @@
             </div>
         </div>
 
-        <div class="fade-up delay-3" style="margin-top: 4rem;">
+        <div class="fade-up delay-3" style="margin-top: clamp(3rem, 6vw, 5rem);">
             <h2 class="section-title">Let's Work Together</h2>
-            <p>Looking for an editor for your next project? Drop me a message or give me a call.</p>
+            <p style="font-size: clamp(0.9rem, 2vw, 1.1rem);">Looking for an editor for your next project? Drop me a message or give me a call.</p>
             
             <div class="social-links">
                 <a href="https://www.youtube.com/@FilmingMoopan" target="_blank" class="icon-btn" title="YouTube">
@@ -414,15 +427,13 @@
             if (section.classList.contains("active")) {
                 section.classList.remove("active");
             } else {
-                // Optional: Hide the other section when one opens to keep it clean
                 document.querySelectorAll('.hidden-section').forEach(el => el.classList.remove('active'));
-                
-                // Show the clicked section
                 section.classList.add("active");
                 
-                // Smooth scroll to it after a tiny delay
                 setTimeout(() => {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Adjusted for mobile scrolling offset
+                    const y = section.getBoundingClientRect().top + window.scrollY - 20;
+                    window.scrollTo({top: y, behavior: 'smooth'});
                 }, 100);
             }
         }
@@ -430,6 +441,9 @@
         function copyData(text, type) {
             navigator.clipboard.writeText(text).then(function() {
                 alert(type + " (" + text + ") copied to clipboard!");
+            }).catch(function(err) {
+                // Fallback for older Smart TV browsers
+                prompt("Copy this " + type + ":", text);
             });
         }
     </script>
