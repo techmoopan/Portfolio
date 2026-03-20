@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moopan | Video Editor & Photographer</title>
+
+    <meta name="description" content="Official portfolio of Filming Moopan. Professional Video Editor, Multifandom Editor, and Photographer specializing in cinematic cuts and typography.">
+    <meta name="keywords" content="Filming Moopan, Moopan, Video Editor, Photographer, Cinematic Edits, Indian Cinema Edits, Typography">
+    <meta name="author" content="Moopan">
+    <meta name="robots" content="index, follow">
+    
+    <meta name="google-site-verification" content="YOUR_CODE_HERE" />
+
     <style>
         /* --- CUSTOM FONTS --- */
         @font-face {
@@ -73,7 +81,7 @@
             height: auto;
             z-index: 100;
             transition: transform 0.3s ease;
-            cursor: pointer; /* Shows it's clickable */
+            cursor: pointer; 
         }
         .top-logo:hover {
             transform: scale(1.1) rotate(5deg);
@@ -96,7 +104,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
-            cursor: pointer; /* Suggests background can be clicked */
+            cursor: pointer; 
         }
         
         .logo-modal.active {
@@ -110,7 +118,7 @@
             transform: scale(0.8);
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
-            cursor: default; /* Prevents pointer on the image itself */
+            cursor: default; 
         }
 
         .logo-modal.active .logo-modal-content {
@@ -532,7 +540,6 @@
         }
 
         function closeLogoModal(event) {
-            // Check if the click happened on the background specifically, NOT the image
             if (event.target.id === "logoModal") {
                 document.getElementById("logoModal").classList.remove("active");
             }
