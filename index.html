@@ -63,7 +63,7 @@
             width: clamp(50px, 8vw, 80px); 
             height: auto;
             z-index: 100;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .top-logo:hover {
             transform: scale(1.1) rotate(5deg);
@@ -216,27 +216,114 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .image-placeholder {
-            background-color: rgba(0, 0, 0, 0.3);
+        /* --- NEW: PHOTOGRAPHY GALLERY STYLES --- */
+        .gallery-card {
+            cursor: pointer;
+        }
+        .image-wrapper {
+            position: relative;
+            width: 100%;
             height: clamp(180px, 25vw, 300px);
             border-radius: 12px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .gallery-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Keeps image proportions */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .image-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 210, 255, 0.2);
+            backdrop-filter: blur(2px);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #64748b;
-            font-weight: normal;
-            letter-spacing: 2px;
-            font-family: 'StretchPro', sans-serif;
-            font-size: clamp(0.7rem, 1.5vw, 1rem);
-            border: 1px dashed rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-            padding: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .card:hover .image-placeholder {
-            border-color: rgba(0, 210, 255, 0.3);
-            background-color: rgba(0,0,0,0.5);
+        .image-overlay svg {
+            width: 40px; 
+            height: 40px; 
+            color: #ffffff;
+            transform: scale(0.5);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .gallery-card:hover .gallery-thumb {
+            transform: scale(1.08);
+        }
+        .gallery-card:hover .image-overlay {
+            opacity: 1;
+        }
+        .gallery-card:hover .image-overlay svg {
+            transform: scale(1);
+        }
+
+        /* --- NEW: PHOTO LIGHTBOX MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(2, 5, 10, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 75vh;
+            border-radius: 16px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            object-fit: contain;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .close-modal {
+            position: absolute;
+            top: clamp(15px, 3vw, 30px);
+            right: clamp(20px, 4vw, 40px);
+            color: #e0e7ff;
+            font-size: clamp(30px, 5vw, 45px);
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            z-index: 1001;
+            font-family: Arial, sans-serif;
+        }
+        .close-modal:hover {
             color: var(--primary-cyan);
+            transform: scale(1.2) rotate(90deg);
+        }
+        #modalCaption {
+            margin-top: 20px;
+            font-family: 'StretchPro', sans-serif;
+            color: var(--primary-cyan);
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            text-align: center;
+            text-transform: uppercase;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease 0.1s;
+        }
+        .modal.show #modalCaption {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         /* --- HIDDEN SECTIONS --- */
@@ -380,21 +467,55 @@
         <div id="posters-section" class="hidden-section">
             <h2 class="section-title">Photography</h2>
             <div class="grid">
-                <div class="card">
-                    <div class="image-placeholder">PHOTO 1</div>
+                
+                <div class="card gallery-card" onclick="openModal('logo.png', 'Landscape')">
+                    <div class="image-wrapper">
+                        <img src="logo.png" alt="Landscape" class="gallery-thumb">
+                        <div class="image-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <polyline points="9 21 3 21 3 15"></polyline>
+                                <line x1="21" y1="3" x2="14" y2="10"></line>
+                                <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                        </div>
+                    </div>
                     <h4>Landscape</h4>
                     <p>Nature</p>
                 </div>
-                <div class="card">
-                    <div class="image-placeholder">PHOTO 2</div>
+
+                <div class="card gallery-card" onclick="openModal('logo.png', 'Portrait')">
+                    <div class="image-wrapper">
+                        <img src="logo.png" alt="Portrait" class="gallery-thumb">
+                        <div class="image-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <polyline points="9 21 3 21 3 15"></polyline>
+                                <line x1="21" y1="3" x2="14" y2="10"></line>
+                                <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                        </div>
+                    </div>
                     <h4>Portrait</h4>
                     <p>Street</p>
                 </div>
-                <div class="card">
-                    <div class="image-placeholder">PHOTO 3</div>
+
+                <div class="card gallery-card" onclick="openModal('logo.png', 'Cinematic')">
+                    <div class="image-wrapper">
+                        <img src="logo.png" alt="Cinematic" class="gallery-thumb">
+                        <div class="image-overlay">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <polyline points="9 21 3 21 3 15"></polyline>
+                                <line x1="21" y1="3" x2="14" y2="10"></line>
+                                <line x1="3" y1="21" x2="10" y2="14"></line>
+                            </svg>
+                        </div>
+                    </div>
                     <h4>Cinematic</h4>
                     <p>Color Graded</p>
                 </div>
+
             </div>
         </div>
 
@@ -438,7 +559,14 @@
         <p>&copy; 2026 Filming Moopan. All rights reserved.</p>
     </footer>
 
+    <div id="photoModal" class="modal" onclick="closeModal()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
+
     <script>
+        // Reveal Portfolios
         function toggleSection(sectionId) {
             var section = document.getElementById(sectionId);
             
@@ -455,7 +583,7 @@
             }
         }
 
-        // Standard copy function for the phone number
+        // Phone Copy
         function copyData(text, type) {
             navigator.clipboard.writeText(text).then(function() {
                 alert(type + " (" + text + ") copied to clipboard!");
@@ -464,16 +592,12 @@
             });
         }
 
-        // Smart email function: Redirects on PC, copies on Mobile
+        // Smart Email
         function handleEmailClick() {
             var email = "filmingmoopan@gmail.com";
-            
-            // Check if the screen width is larger than a typical mobile device
             if (window.innerWidth > 768) {
-                // PC: Open Gmail Web Compose window
                 window.open("https://mail.google.com/mail/?view=cm&fs=1&to=" + email, "_blank");
             } else {
-                // Mobile: Copy to clipboard
                 navigator.clipboard.writeText(email).then(function() {
                     alert("Gmail address (" + email + ") copied to clipboard!");
                 }).catch(function(err) {
@@ -481,6 +605,38 @@
                 });
             }
         }
+
+        // --- NEW: MODAL LOGIC ---
+        function openModal(imageSrc, captionText) {
+            var modal = document.getElementById("photoModal");
+            var modalImg = document.getElementById("modalImage");
+            var caption = document.getElementById("modalCaption");
+            
+            modalImg.src = imageSrc;
+            caption.innerHTML = captionText;
+            
+            modal.style.display = "flex";
+            // Tiny delay to allow CSS to render display:flex before animating opacity
+            setTimeout(() => {
+                modal.classList.add("show");
+            }, 10);
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("photoModal");
+            modal.classList.remove("show");
+            // Wait for fade animation to finish before hiding display
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 400); 
+        }
+
+        // Close Modal if user presses Escape key
+        document.addEventListener('keydown', function(event){
+            if(event.key === "Escape"){
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
